@@ -1,8 +1,14 @@
 
 package com.gabrielToDoList.To_Do_List.Entities;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table( name = "tb_todos" )
 public class Todos {
 
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
     private String name;

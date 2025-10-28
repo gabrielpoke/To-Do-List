@@ -1,18 +1,33 @@
 package com.gabrielToDoList.To_Do_List.Resources;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.gabrielToDoList.To_Do_List.DTOs.TodosDTO;
+import com.gabrielToDoList.To_Do_List.Services.TodoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController(value = "/todos")
 public class TodosResource {
 
-    public void findAllTodos(){}
+    @Autowired
+    private TodoService service;
 
-    public void findOneTodo(){}
+    @GetMapping
+    public ResponseEntity<List<TodosDTO>> findAllTodos(){ return ResponseEntity.ok(service.findAllTodos()); }
 
-    public void insertNewTodo(){}
+    @GetMapping( value =  "/{id}")
+    public void findOneTodo( @PathVariable Long id ){}
 
-    public void updateATodo(){}
+    @PostMapping
+    public void insertNewTodo(@RequestBody TodosDTO information ){ }
 
-    public void deleteOneTodo(){}
+    @PutMapping( value = "/{id}")
+    public void updateATodo( @PathVariable Long id, @RequestBody TodosDTO information ){}
+
+    @DeleteMapping( value = "/{id}")
+    public void deleteOneTodo( @PathVariable Long id ){}
 
 }
